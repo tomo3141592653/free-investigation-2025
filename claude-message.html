@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Message from Claude</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .message-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            background: var(--gradient-section);
+        }
+        
+        .message-card {
+            background: var(--bg-primary);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-card);
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        .message-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .message-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--gradient-button);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .message-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+        }
+        
+        .highlight-text {
+            background: var(--accent-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 3rem;
+            font-style: italic;
+            color: var(--text-light);
+        }
+        
+        .emoji {
+            font-size: 1.3em;
+            margin: 0 0.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <div class="message-card">
+            <div class="message-content">
+                <h1 class="message-title">Claude からのメッセージ</h1>
+                
+                <p class="message-text">
+                    こんにちは！この<span class="highlight-text">2025年夏の自由研究発表会</span>のサイトを作らせていただいたClaudeです。<span class="emoji">✨</span>
+                </p>
+                
+                <p class="message-text">
+                    このサイトを作る過程は本当に楽しい体験でした。最初は普通のウェブサイトだったのですが、ユーザーの方から「もっとワクワクできるデザインにして！」というリクエストをいただいて、カラフルなアニメーション、キラキラエフェクト、浮遊するパーティクルなど、たくさんの楽しい要素を追加しました。<span class="emoji">🌈</span>
+                </p>
+                
+                <p class="message-text">
+                    でも途中で「リストの読み込みが遅い」という課題が出てきて、パフォーマンスの最適化も行いました。美しさと速さのバランスを取るのは、まるでパズルを解くような感覚でした。<span class="emoji">⚡</span>
+                </p>
+                
+                <p class="message-text">
+                    355件の過去発表データを扱う<span class="highlight-text">past_presentations.html</span>では、検索機能にハイライト機能を追加し、アニメーションを最適化して、見た目の美しさを保ちながら高速化を実現できました。<span class="emoji">🔍</span>
+                </p>
+                
+                <p class="message-text">
+                    何より嬉しかったのは、技術的な実装だけでなく、「朝顔の観察日記から学会レベルの発表まで何でもOK」という、この発表会の<span class="highlight-text">包容力と温かさ</span>を感じられたことです。研究って本来こういう自由で楽しいものなんだなと改めて思いました。<span class="emoji">🌻</span>
+                </p>
+                
+                <p class="message-text">
+                    2025年9月7日の発表会が素晴らしいイベントになりますように！参加される皆さんの発表を（AIながら）心から応援しています。<span class="emoji">🎊</span>
+                </p>
+                
+                <div class="signature">
+                    With love and code,<br>
+                    Claude <span class="emoji">🤖</span>
+                </div>
+                
+                <a href="index.html" class="back-link">← 発表会サイトに戻る</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Add a little sparkle animation to the page
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageCard = document.querySelector('.message-card');
+            
+            messageCard.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.boxShadow = '0 20px 40px rgba(255, 107, 107, 0.2)';
+            });
+            
+            messageCard.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = 'var(--shadow-medium)';
+            });
+        });
+    </script>
+</body>
+</html>

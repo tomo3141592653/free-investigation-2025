@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>過去の発表リスト - 自由研究発表会</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --primary-light: #FF8E8E;
+            --secondary-color: #4ECDC4;
+            --accent-color: #FFE66D;
+            --accent-pink: #FF6B9D;
+            --accent-purple: #A463FF;
+            --text-dark: #2C3E50;
+            --text-medium: #5A6C7D;
+            --text-light: #8492A6;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFF;
+            --bg-alt: #F0F8FF;
+            --border-color: #E2E8F0;
+            --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-glow: 0 0 20px rgba(255, 107, 107, 0.3);
+            --gradient-hero: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #FFE66D 100%);
+            --gradient-card: linear-gradient(135deg, #FFE66D 0%, #FF6B9D 100%);
+            --gradient-button: linear-gradient(135deg, #FF6B6B 0%, #A463FF 100%);
+            --gradient-section: linear-gradient(135deg, rgba(255, 230, 109, 0.1) 0%, rgba(164, 99, 255, 0.1) 100%);
+        }
+        
+        body {
+            background: var(--gradient-section);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 25% 25%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                              radial-gradient(circle at 75% 75%, rgba(78, 205, 196, 0.1) 0%, transparent 50%);
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .section {
+            background: var(--gradient-hero);
+            background-size: 300% 300%;
+            animation: rainbow 12s ease infinite;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: sparkle 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .section-header h1 {
+            color: white;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: pulse 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        .presentation-list {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .presentation-count {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        
+        .presentations {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .presentation {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-medium);
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            align-items: flex-start;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.6s ease-out;
+        }
+        
+        .presentation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-card);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .presentation:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-glow);
+            border-left-color: var(--accent-color);
+        }
+        
+        .presentation:hover::before {
+            opacity: 0.1;
+        }
+        
+        .presentation-number {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-right: 1.5rem;
+            min-width: 3.5rem;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+            background: var(--gradient-button);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .presentation-title {
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            display: block;
+            padding: 1rem 1.5rem;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .search-box:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(255, 230, 109, 0.5);
+            transform: scale(1.02);
+        }
+        
+        .search-box::placeholder {
+            color: var(--text-medium);
+            font-weight: 400;
+        }
+        
+        .no-results {
+            text-align: center;
+            color: var(--text-medium);
+            font-style: italic;
+            padding: 3rem;
+            font-size: 1.2rem;
+            background: var(--bg-primary);
+            border-radius: 15px;
+            box-shadow: var(--shadow-medium);
+            margin: 2rem auto;
+            max-width: 400px;
+        }
+        
+        /* Optimized loading - no staggered animations */
+        .presentation {
+            animation: none;
+        }
+        
+        .presentation.visible {
+            animation: slideInUp 0.2s ease-out;
+        }
+        
+        /* Highlight matching text */
+        .highlight {
+            background: var(--accent-color);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <header class="section">
+        <div class="container">
+            <a href="index.html" class="back-link">← 戻る</a>
+            <div class="section-header">
+                <h1 class="section-title">📚 過去の発表リスト</h1>
+                <p class="presentation-count">🎆 全355件の発表テーマ 🎆</p>
+            </div>
+            <input type="text" class="search-box" id="searchBox" placeholder="発表タイトルを検索...">
+        </div>
+    </header>
+
+    <main>
+        <div class="presentation-list">
+            <div class="presentations" id="presentationsList">
+                <div class="presentation">
+                    <div class="presentation-number">1.</div>
+                    <div class="presentation-title">パンを作った</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">2.</div>
+                    <div class="presentation-title">札幌ビジネスホテル番付ベストテン</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">3.</div>
+                    <div class="presentation-title">小学校のPTA役員になってしまった</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">4.</div>
+                    <div class="presentation-title">「他人ハウス」をやってみた Side U</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">5.</div>
+                    <div class="presentation-title">半分に切ると2匹になるプラナリアの研究</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">6.</div>
+                    <div class="presentation-title">先週行ってきた場所</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">7.</div>
+                    <div class="presentation-title">音象徴から解釈する「ひらたともよし」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">8.</div>
+                    <div class="presentation-title">Live２DでVtuberモデル作ってみた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">9.</div>
+                    <div class="presentation-title">写真美的判定機作成</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">10.</div>
+                    <div class="presentation-title">樋口一葉の読み方について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">11.</div>
+                    <div class="presentation-title">FX</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">12.</div>
+                    <div class="presentation-title">パパにケーキとカレーを作ったおはなし</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">13.</div>
+                    <div class="presentation-title">徳のクッキークリッカー　ソーラーマニ車のdps計測</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">14.</div>
+                    <div class="presentation-title">「他人ハウス」をやってみた　Side:K</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">15.</div>
+                    <div class="presentation-title">すべてを略すバス運転手　観察日記</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">16.</div>
+                    <div class="presentation-title">レーニン峰登山</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">17.</div>
+                    <div class="presentation-title">ソーセージはおにぎよりもスシである</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">18.</div>
+                    <div class="presentation-title">共同海損のはなし</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">19.</div>
+                    <div class="presentation-title">真夏の夜の夢</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">20.</div>
+                    <div class="presentation-title">claudeと数学とゲーム</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">21.</div>
+                    <div class="presentation-title">モテアマスと所有の概念</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">22.</div>
+                    <div class="presentation-title">日本と世界の認識のずれ(戦争編)</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">23.</div>
+                    <div class="presentation-title">「猫のごはん食べ比べレポート〜ロイヤルカナン編〜」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">24.</div>
+                    <div class="presentation-title">レシピ検索サイトを作ってみた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">25.</div>
+                    <div class="presentation-title">リミナルスペースを「よみとく」「みつける」「つくる」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">26.</div>
+                    <div class="presentation-title">楳図かずおと伊藤潤二に見る美醜</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">27.</div>
+                    <div class="presentation-title">アバターが医療用AI chatのユーザーに与える心理的影響</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">28.</div>
+                    <div class="presentation-title">不完全性定理</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">29.</div>
+                    <div class="presentation-title">知らない和歌山紹介</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">30.</div>
+                    <div class="presentation-title">植物乾燥させるぞいを作ったこと</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">31.</div>
+                    <div class="presentation-title">引きこもり陰キャオタクのリアビリ生活</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">32.</div>
+                    <div class="presentation-title">総合格闘技と魔術で人生を豊かにしちゃおう</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">33.</div>
+                    <div class="presentation-title">ウルグアイの○○ぐあい</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">34.</div>
+                    <div class="presentation-title">フランス人から見た浮世絵</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">35.</div>
+                    <div class="presentation-title">真珠湾慰霊に参加してきた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">36.</div>
+                    <div class="presentation-title">日本アマチュア数学協会の紹介</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">37.</div>
+                    <div class="presentation-title">「ヘビはかしこいのか」　おまけ：脱皮前の体調不良</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">38.</div>
+                    <div class="presentation-title">手前味噌の話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">39.</div>
+                    <div class="presentation-title">行動ログの可視化</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">40.</div>
+                    <div class="presentation-title">バーニングマン</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">41.</div>
+                    <div class="presentation-title">自室窓に棲み着いているヤモリ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">42.</div>
+                    <div class="presentation-title">休職して復職して現在</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">43.</div>
+                    <div class="presentation-title">地下アイドルの闇</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">44.</div>
+                    <div class="presentation-title">撮った写真を見せます。時間帯変えるかも。</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">45.</div>
+                    <div class="presentation-title">ぶらさがり健康器を買ってみた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">46.</div>
+                    <div class="presentation-title">3Dプリンタを使って2画面拡張用​PCスタンドを作ってみた​～初めての3Dプリンタ～​</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">47.</div>
+                    <div class="presentation-title">流体力学を応用したまっすぐ飛ぶ紙飛行機</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">48.</div>
+                    <div class="presentation-title">ローマ字打鍵のためのキーボード配列『大西配列』の開発と常用</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">49.</div>
+                    <div class="presentation-title">ChatGPTと相談しながらマインスイーパーを作った話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">50.</div>
+                    <div class="presentation-title">扇風機評論家が今年テレビにもラジオにもネットニュースにも出なかった理由</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">51.</div>
+                    <div class="presentation-title">ゲームの歴史を語ることとは</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">52.</div>
+                    <div class="presentation-title">演繹について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">53.</div>
+                    <div class="presentation-title">来年度3月から更に縮小　JR北海道「留萌本線」には何があるのか</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">54.</div>
+                    <div class="presentation-title">ロンドンの食生活（時差の関係で発表が終わったら退出して寝ます）</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">55.</div>
+                    <div class="presentation-title">40人の家に行ってもレイプされない方法</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">56.</div>
+                    <div class="presentation-title">培養肉</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">57.</div>
+                    <div class="presentation-title">不完全性定理</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">58.</div>
+                    <div class="presentation-title">発酵食品を作ってみた～毛豆腐編～</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">59.</div>
+                    <div class="presentation-title">東京大学でメシを食おう</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">60.</div>
+                    <div class="presentation-title">リーマンサットの簡単な紹介</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">61.</div>
+                    <div class="presentation-title">AIで美少女を爆誕させる方法</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">62.</div>
+                    <div class="presentation-title">院試の話 社会学の話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">63.</div>
+                    <div class="presentation-title">銀河中心から見た夜空は明るいか</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">64.</div>
+                    <div class="presentation-title">ベイズ更新</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">65.</div>
+                    <div class="presentation-title">小線源治療入門</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">66.</div>
+                    <div class="presentation-title">小脳の機能</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">67.</div>
+                    <div class="presentation-title">今年行った、「秘境銭湯」三選！</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">68.</div>
+                    <div class="presentation-title">東京⇔大阪 新幹線と同額の高級バスは本当に快適なのか</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">69.</div>
+                    <div class="presentation-title">障害者手帳の活用</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">70.</div>
+                    <div class="presentation-title">なぜニイニイゼミの抜け殻は泥だらけなのか</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">71.</div>
+                    <div class="presentation-title">Twitterで秒速結婚した妻との3ヶ月を振り返る</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">72.</div>
+                    <div class="presentation-title">妊娠出産体験記</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">73.</div>
+                    <div class="presentation-title">これ買って良かったよ2022</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">74.</div>
+                    <div class="presentation-title">アカストの話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">75.</div>
+                    <div class="presentation-title">ピアノを弾いて録画して公開します</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">76.</div>
+                    <div class="presentation-title">アメリカに滞在している間にきいたドラッグのはなし</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">77.</div>
+                    <div class="presentation-title">樹脂封入骨格標本を作る</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">78.</div>
+                    <div class="presentation-title">Kindle本を出版するまでの道のり</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">79.</div>
+                    <div class="presentation-title">立体魔方陣、多次元魔方陣の一製法</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">80.</div>
+                    <div class="presentation-title">ヨーグルト選手権を開催しVtuberになって結果発表した話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">81.</div>
+                    <div class="presentation-title">うつ体質の私が教える症状を悪化させないためにするべき５つのコツ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">82.</div>
+                    <div class="presentation-title">猫のごはん食べ比べレポート〜カルカン編〜</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">83.</div>
+                    <div class="presentation-title">「新卒で入社したヤフーを退職した」の検証</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">84.</div>
+                    <div class="presentation-title">読書感想文「なめらかな社会とその敵」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">85.</div>
+                    <div class="presentation-title">年収300万円台からの資産運用報告</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">86.</div>
+                    <div class="presentation-title">モーニング娘。'20特集@今夜くらべてみました　のTwitterでの反響の計測（結果）</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">87.</div>
+                    <div class="presentation-title">目指せふぐ包丁師🐡</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">88.</div>
+                    <div class="presentation-title">顔認識サーモグラフィーカメラを自作してみる</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">89.</div>
+                    <div class="presentation-title">絵と人生のまとめ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">90.</div>
+                    <div class="presentation-title">Phenomenological Social Analysis</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">91.</div>
+                    <div class="presentation-title">シェアハウス向き物件のある土地　東京23区比較！</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">92.</div>
+                    <div class="presentation-title">元落語家(見習い)が何かを語る</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">93.</div>
+                    <div class="presentation-title">DIYバイオについて(仮)</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">94.</div>
+                    <div class="presentation-title">無くさない技術</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">95.</div>
+                    <div class="presentation-title">うちの計算機が私を真似して描こうとした絵</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">96.</div>
+                    <div class="presentation-title">みんなもっとお料理イベント開催して枝肉とか巨大魚とか捌けばいいじゃない</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">97.</div>
+                    <div class="presentation-title">帰ってきた栄養最適化</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">98.</div>
+                    <div class="presentation-title">アルバイトの勧め</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">99.</div>
+                    <div class="presentation-title">立体魔方陣の作り方の一例</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">100.</div>
+                    <div class="presentation-title">最近取り組んだ自由研究</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">101.</div>
+                    <div class="presentation-title">遺伝的アルゴリズムで探すバランスの取れたマクドナルドのメニュー</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">102.</div>
+                    <div class="presentation-title">美容のスキルツリーについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">103.</div>
+                    <div class="presentation-title">スズメガの生育</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">104.</div>
+                    <div class="presentation-title">じゅげむ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">105.</div>
+                    <div class="presentation-title">かがくのとも研究</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">106.</div>
+                    <div class="presentation-title">日本のオンライン求人市場に起こっている変化</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">107.</div>
+                    <div class="presentation-title">産後うつについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">108.</div>
+                    <div class="presentation-title">髪を切りにオランダへ行ってきた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">109.</div>
+                    <div class="presentation-title">ロリコンについて本気出して考えてみた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">110.</div>
+                    <div class="presentation-title">半生紹介と虐待されてた母の葬式に行った話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">111.</div>
+                    <div class="presentation-title">ロッキン出演前後のモーニング娘のTwitterフォロワーの様相変化</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">112.</div>
+                    <div class="presentation-title">アンドロイドは電気羊の絵を描くか？</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">113.</div>
+                    <div class="presentation-title">実家体験記</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">114.</div>
+                    <div class="presentation-title">東京銭湯ベスト100 ～1位から100位までランク付け～</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">115.</div>
+                    <div class="presentation-title">ギークハウス秋葉原、ギークハウス浅草橋</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">116.</div>
+                    <div class="presentation-title">うつ病女子と相性の良いパートナーの特徴</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">117.</div>
+                    <div class="presentation-title">平田botを作る</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">118.</div>
+                    <div class="presentation-title">耳に触らない音出し機械の世界</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">119.</div>
+                    <div class="presentation-title">りべるたんについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">120.</div>
+                    <div class="presentation-title">アル中になりかけており、準備が捗らなかったことの言い訳を喋ることになりそう</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">121.</div>
+                    <div class="presentation-title">野良犬から身を守る方法</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">122.</div>
+                    <div class="presentation-title">アニソンダンスバトルについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">123.</div>
+                    <div class="presentation-title">自宅で自分のうんこの重さや長さを記録・観察するための低予算道具セットの発表</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">124.</div>
+                    <div class="presentation-title">ADHD観察日記……ADHDと診断されてからの一ヶ月と、自分に起きた変化の記録</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">125.</div>
+                    <div class="presentation-title">スマートスピーカーで身近な課題を解決する</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">126.</div>
+                    <div class="presentation-title">作品紹介</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">127.</div>
+                    <div class="presentation-title">肩コリがなぜか一瞬で消し飛ぶ奇跡のペッチン治療術</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">128.</div>
+                    <div class="presentation-title">カップ酒トラベラー</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">129.</div>
+                    <div class="presentation-title">イケメンになる方法</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">130.</div>
+                    <div class="presentation-title">障害者に優しいシェアハウスを作る</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">131.</div>
+                    <div class="presentation-title">そして勇者は無職になった（なろう小説の発展とジャンル分岐について）</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">132.</div>
+                    <div class="presentation-title">ロングセラー絵本といいの家の子どもたち</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">133.</div>
+                    <div class="presentation-title">minority game</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">134.</div>
+                    <div class="presentation-title">山谷夏祭り2018の記録</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">135.</div>
+                    <div class="presentation-title">妖怪のすすめ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">136.</div>
+                    <div class="presentation-title">IoTっぽいものやってみた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">137.</div>
+                    <div class="presentation-title">福島県いわき市小名浜のソープ街について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">138.</div>
+                    <div class="presentation-title">ショートショート生成AI生成のための星新一200作品「オチ」構造カテゴライズ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">139.</div>
+                    <div class="presentation-title">「限りなく透明に近い解剖学」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">140.</div>
+                    <div class="presentation-title">読書感想文の研究</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">141.</div>
+                    <div class="presentation-title">呪符の自動生成</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">142.</div>
+                    <div class="presentation-title">＜2018年上半期＞二次元イケメンコンテンツの傾向と対策</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">143.</div>
+                    <div class="presentation-title">後輩の研究 エロスとタナトスについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">144.</div>
+                    <div class="presentation-title">メイドと風俗の話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">145.</div>
+                    <div class="presentation-title">私はPythonを使いたい</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">146.</div>
+                    <div class="presentation-title">伊豆の話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">147.</div>
+                    <div class="presentation-title">戻ってきた栄養最適化</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">148.</div>
+                    <div class="presentation-title">それでどうなったの？家出娘移住計画2018年度編</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">149.</div>
+                    <div class="presentation-title">朝顔の観察</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">150.</div>
+                    <div class="presentation-title">Ideas worth spreading なTED動画の紹介</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">151.</div>
+                    <div class="presentation-title">ドルヲタのTwitterプロフィールを解析する。</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">152.</div>
+                    <div class="presentation-title">自己研究/落とし物の考察</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">153.</div>
+                    <div class="presentation-title">精液の味について 2</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">154.</div>
+                    <div class="presentation-title">CBDについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">155.</div>
+                    <div class="presentation-title">僕 ミャンマーに飛ばされました</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">156.</div>
+                    <div class="presentation-title">"学生さん、トンカツをな、トンカツをいつでも食えるくらいになりなよ。</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">157.</div>
+                    <div class="presentation-title">それが、人間えら過ぎもしない貧乏過ぎもしない、</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">158.</div>
+                    <div class="presentation-title">ちょうどいいくらいってとこなんだ。"</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">159.</div>
+                    <div class="presentation-title">進化や適応</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">160.</div>
+                    <div class="presentation-title">死と再生の場としての洞窟の利用</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">161.</div>
+                    <div class="presentation-title">ラッピングについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">162.</div>
+                    <div class="presentation-title">サロスのひみつ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">163.</div>
+                    <div class="presentation-title">自分の部屋を観察してみた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">164.</div>
+                    <div class="presentation-title">深層強化学習による立体四目ゲームAIの作成(間に合うか微妙)</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">165.</div>
+                    <div class="presentation-title">美味しい発生生物学（実演予定）</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">166.</div>
+                    <div class="presentation-title">音ゲーのために睡眠良くしてみた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">167.</div>
+                    <div class="presentation-title">移住目当ての家出娘視点-シンガポール2017年夏版</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">168.</div>
+                    <div class="presentation-title">完全栄養食を作る</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">169.</div>
+                    <div class="presentation-title">シンガポールの二言語（多言語）政策について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">170.</div>
+                    <div class="presentation-title">カミツキガメを捕まえて食べておこづかいもGETした話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">171.</div>
+                    <div class="presentation-title">ポーカー</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">172.</div>
+                    <div class="presentation-title">今時の大学生のPC事情</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">173.</div>
+                    <div class="presentation-title">メイドカフェ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">174.</div>
+                    <div class="presentation-title">東方Projectの話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">175.</div>
+                    <div class="presentation-title">台北からライブ配信</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">176.</div>
+                    <div class="presentation-title">昔住んでいた部屋、iPhoneの強制リセット、自炊代行の現況、虚無</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">177.</div>
+                    <div class="presentation-title">ぎーあみについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">178.</div>
+                    <div class="presentation-title">✨ 山 下 財 宝 ✨</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">179.</div>
+                    <div class="presentation-title">痩せたければ白米ばかり食え！ 〜炭水化物抜きダイエットの時代は終わった〜</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">180.</div>
+                    <div class="presentation-title">イケボのつくりかた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">181.</div>
+                    <div class="presentation-title">グングニル</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">182.</div>
+                    <div class="presentation-title">彼女つくったはなし</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">183.</div>
+                    <div class="presentation-title">IoT工作：自動水やり機Ver2</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">184.</div>
+                    <div class="presentation-title">精液の味について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">185.</div>
+                    <div class="presentation-title">プログラミング初等教育における美少女botの重要性について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">186.</div>
+                    <div class="presentation-title">使い捨て監視カメラ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">187.</div>
+                    <div class="presentation-title">祭について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">188.</div>
+                    <div class="presentation-title">セブで一番ある質問</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">189.</div>
+                    <div class="presentation-title">部屋の片付けについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">190.</div>
+                    <div class="presentation-title">儲かる株について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">191.</div>
+                    <div class="presentation-title">これ買ってマジよかったよ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">192.</div>
+                    <div class="presentation-title">風の谷のナウシカについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">193.</div>
+                    <div class="presentation-title">ハロヲタによるアイドルのネットワーク分析</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">194.</div>
+                    <div class="presentation-title">社会主義とIT</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">195.</div>
+                    <div class="presentation-title">"掛け持ち仕事（複業）の研究</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">196.</div>
+                    <div class="presentation-title">〜自己実践してみて〜（仮）"</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">197.</div>
+                    <div class="presentation-title">独立国家建国についての現状(仮)</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">198.</div>
+                    <div class="presentation-title">パフォーミングアーツ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">199.</div>
+                    <div class="presentation-title">「全裸レストラン」レポ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">200.</div>
+                    <div class="presentation-title">「ギークハウスに住んでみて」「天然物✕代謝工学の可能性」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">201.</div>
+                    <div class="presentation-title">ギークキャラバン活動報告</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">202.</div>
+                    <div class="presentation-title">薬物依存患者が合法的にヘロインを吸えるオランダの依存治療施設に行ってきました</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">203.</div>
+                    <div class="presentation-title">大手ゲーム会社辞めた個人が作ったゲームの売上事情</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">204.</div>
+                    <div class="presentation-title">ギークハウス再び海外進出！フィリピン マニラ＆ダバオ2拠点！</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">205.</div>
+                    <div class="presentation-title">新しいビッグデータハッキングツールの提案</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">206.</div>
+                    <div class="presentation-title">自己紹介と仕事について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">207.</div>
+                    <div class="presentation-title">続ギークハウスに住んで</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">208.</div>
+                    <div class="presentation-title">相互評価アプリHappy の紹介</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">209.</div>
+                    <div class="presentation-title">山谷の朝</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">210.</div>
+                    <div class="presentation-title">ギークハウスのおかげで転職できた話&AzureMLはいいぞ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">211.</div>
+                    <div class="presentation-title">ギークハウスを作ったり潰したりした話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">212.</div>
+                    <div class="presentation-title">「日本企業における社内英語公用語化とその影響</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">213.</div>
+                    <div class="presentation-title">美味しい解剖学序論</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">214.</div>
+                    <div class="presentation-title">baの持つ力 ー NECワーキングマザーサロンとママボノとギークハウス ー</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">215.</div>
+                    <div class="presentation-title">楽しい中華通販生活</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">216.</div>
+                    <div class="presentation-title">東京から各都道府県への交通料金を距離に置き換えた地図を作ったよ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">217.</div>
+                    <div class="presentation-title">家庭内ツールとしてのSlack</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">218.</div>
+                    <div class="presentation-title">大人の発達障害について考える</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">219.</div>
+                    <div class="presentation-title">リモートワークに必要なコミュ力</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">220.</div>
+                    <div class="presentation-title">路上に出て１年経ちました。</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">221.</div>
+                    <div class="presentation-title">「拡張人間社会」到来の3つの兆し</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">222.</div>
+                    <div class="presentation-title">ニコニコ動画での個人放送活動について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">223.</div>
+                    <div class="presentation-title">ミャンマーの話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">224.</div>
+                    <div class="presentation-title">新宿区の猫とギークハウス</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">225.</div>
+                    <div class="presentation-title">社会人院生になろう</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">226.</div>
+                    <div class="presentation-title">音ゲーにおける脳の使われ方の仮説</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">227.</div>
+                    <div class="presentation-title">日時計による緯度と経度の計測</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">228.</div>
+                    <div class="presentation-title">女装</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">229.</div>
+                    <div class="presentation-title">栄養の取り方はデータが教えてくれる〜最適化問題を解く〜</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">230.</div>
+                    <div class="presentation-title">人の心、宇宙の心</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">231.</div>
+                    <div class="presentation-title">脳波から見る賢者タイム</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">232.</div>
+                    <div class="presentation-title">ストリップはいいぞ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">233.</div>
+                    <div class="presentation-title">バナッハ空間について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">234.</div>
+                    <div class="presentation-title">タイムリープをした話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">235.</div>
+                    <div class="presentation-title">「秋葉原に住む」ということ及び秋葉原周辺のシェアハウスの概況</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">236.</div>
+                    <div class="presentation-title">オリンピックを盛り上げろ！ー麺からのアプローチ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">237.</div>
+                    <div class="presentation-title">もっとも愛されている"数字"はどれなのか</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">238.</div>
+                    <div class="presentation-title">シェアハウス"ギークハウス"に住んで</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">239.</div>
+                    <div class="presentation-title">すべては人の質にあり 少林寺拳法が考える理想国家について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">240.</div>
+                    <div class="presentation-title">"世界一周した話"</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">241.</div>
+                    <div class="presentation-title">「私の好きなアズレージョ」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">242.</div>
+                    <div class="presentation-title">「放電を記録する</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">243.</div>
+                    <div class="presentation-title">ツォルキン：マヤ神聖歴紹介と研究（ボードゲ）</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">244.</div>
+                    <div class="presentation-title">"悟り"的な体験話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">245.</div>
+                    <div class="presentation-title">扇風機</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">246.</div>
+                    <div class="presentation-title">「僕の考える面白いイベントとは？」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">247.</div>
+                    <div class="presentation-title">bitcoin</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">248.</div>
+                    <div class="presentation-title">「中国、ベトナムから学んだこと」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">249.</div>
+                    <div class="presentation-title">facebook友人マップを作る方法</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">250.</div>
+                    <div class="presentation-title">ギークハウス仲間と岩手に行った話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">251.</div>
+                    <div class="presentation-title">ギークハウスの運営は儲かるのか？</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">252.</div>
+                    <div class="presentation-title">ビットコイントレードについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">253.</div>
+                    <div class="presentation-title">ギークハウスアプリを作ってみた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">254.</div>
+                    <div class="presentation-title">Stay Hungry, Stay Homeless.</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">255.</div>
+                    <div class="presentation-title">宝くじやめろ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">256.</div>
+                    <div class="presentation-title">庭球語</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">257.</div>
+                    <div class="presentation-title">個人住民税について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">258.</div>
+                    <div class="presentation-title">2014年における扇風機業界の最新トレンドに関する若干の考察</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">259.</div>
+                    <div class="presentation-title">dockerとetcdによるオーケストレーションとサービスディスカバリの考察</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">260.</div>
+                    <div class="presentation-title">元Webデザイナーが取り組むはじめてのArduino</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">261.</div>
+                    <div class="presentation-title">AVについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">262.</div>
+                    <div class="presentation-title">生気論と機械論の対立</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">263.</div>
+                    <div class="presentation-title">野宿のすすめ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">264.</div>
+                    <div class="presentation-title">東北食材に関連</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">265.</div>
+                    <div class="presentation-title">我が家の家庭菜園について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">266.</div>
+                    <div class="presentation-title">評価経済的webアプリ Happyについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">267.</div>
+                    <div class="presentation-title">自己紹介</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">268.</div>
+                    <div class="presentation-title">シェアハウスで強制退去させた事例（主に法律的な話）</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">269.</div>
+                    <div class="presentation-title">読書感想文「脳を鍛えるには運動しかない！」"</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">270.</div>
+                    <div class="presentation-title">星座占いについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">271.</div>
+                    <div class="presentation-title">象使いについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">272.</div>
+                    <div class="presentation-title">1年間で六回引っ越して感じたこと</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">273.</div>
+                    <div class="presentation-title">ウェラブルデバイス</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">274.</div>
+                    <div class="presentation-title">1bitコミュニケーションツールの開発</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">275.</div>
+                    <div class="presentation-title">airbnbについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">276.</div>
+                    <div class="presentation-title">いかにして私は浅い闇から戻ってきたのか(仮)</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">277.</div>
+                    <div class="presentation-title">Extreme Coffee Brewing 2014 （副題：儲かる！パワースポットビジネスのすべて）</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">278.</div>
+                    <div class="presentation-title">配慮</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">279.</div>
+                    <div class="presentation-title">作っているサービス</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">280.</div>
+                    <div class="presentation-title">人工生命の話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">281.</div>
+                    <div class="presentation-title">最近はまっていること</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">282.</div>
+                    <div class="presentation-title">なぜ40個のサンプルサイズで調査するのか</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">283.</div>
+                    <div class="presentation-title">統計の話</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">284.</div>
+                    <div class="presentation-title">しりとりについて</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">285.</div>
+                    <div class="presentation-title">スマホランキングの動向</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">286.</div>
+                    <div class="presentation-title">"(俺はもうだめだ、どうすればいいんだ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">287.</div>
+                    <div class="presentation-title">『似非原、Pythonistaやめるってよ』)"</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">288.</div>
+                    <div class="presentation-title">USTREAMやります</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">289.</div>
+                    <div class="presentation-title">至高のIDE環境 Visual Studio の自慢</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">290.</div>
+                    <div class="presentation-title">Working mother, how to live happily with workaholic husband</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">291.</div>
+                    <div class="presentation-title">死海プール・気仙沼にいったこと</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">292.</div>
+                    <div class="presentation-title">構成的生物学やバイオインフォマティクスを学ぶ理由</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">293.</div>
+                    <div class="presentation-title">NEETとリア充 幸せのかたちについて(仮)</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">294.</div>
+                    <div class="presentation-title">朗読</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">295.</div>
+                    <div class="presentation-title">My Eyes Tokyoについて。</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">296.</div>
+                    <div class="presentation-title">Twitter クライアント "Termtter" の紹介と収集したソーシャルデータを Fluentd + Hadoop で分析する方法の説明</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">297.</div>
+                    <div class="presentation-title">インドにありがちなこと</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">298.</div>
+                    <div class="presentation-title">Drink & Canvas & Lean - 飲みながら描いて学ぶLean Startup</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">299.</div>
+                    <div class="presentation-title">一角獣の家畜化、畜産利用への一考察</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">300.</div>
+                    <div class="presentation-title">美味しい讃岐うどんはどこでしょう</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">301.</div>
+                    <div class="presentation-title">ヴィッパサナー瞑想と発達障害へのアプローチ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">302.</div>
+                    <div class="presentation-title">「在特会」新大久保行動にカウンターしてみた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">303.</div>
+                    <div class="presentation-title">自然について思いをはせてみませんか</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">304.</div>
+                    <div class="presentation-title">「***************。〜シリア**〜」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">305.</div>
+                    <div class="presentation-title">匿名でギー宿を微速度撮影してみた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">306.</div>
+                    <div class="presentation-title">"中東シリアのスーパースター、Omar souleyman（オマー・スリマン）のBGMだけお楽しみ下さい。</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">307.</div>
+                    <div class="presentation-title">soudcoud : https://soundcloud.com/omar-souleyman</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">308.</div>
+                    <div class="presentation-title">発表資料は途中まで作成しました。""発表資料(url)""を参照。"</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">309.</div>
+                    <div class="presentation-title">Lispかわいいよ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">310.</div>
+                    <div class="presentation-title">扇風機は「羽根」で選ぼう、と言う話。</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">311.</div>
+                    <div class="presentation-title">沖縄のシェア居住</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">312.</div>
+                    <div class="presentation-title">Extreme Coffee Brewing 2013 Summer</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">313.</div>
+                    <div class="presentation-title">長期旅行中の効果的な洗濯の仕方</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">314.</div>
+                    <div class="presentation-title">「クビ！」と言われてしまったときのための基礎知識</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">315.</div>
+                    <div class="presentation-title">分散合意の動機的な何か</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">316.</div>
+                    <div class="presentation-title">松山に行ってきた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">317.</div>
+                    <div class="presentation-title">英語とフランス語文法の過去</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">318.</div>
+                    <div class="presentation-title">牛丼太郎</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">319.</div>
+                    <div class="presentation-title">今見るべきインターネットアダルト</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">320.</div>
+                    <div class="presentation-title">御茶ノ水駅</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">321.</div>
+                    <div class="presentation-title">すみよしのいえ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">322.</div>
+                    <div class="presentation-title">ゴシック・ロリータ・パンク(ファッション)について･初級編</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">323.</div>
+                    <div class="presentation-title">世界線分岐装置の理論(と制作と実演)</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">324.</div>
+                    <div class="presentation-title">オーロラの見方</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">325.</div>
+                    <div class="presentation-title">インターネットへの個人の露出に関する一考察</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">326.</div>
+                    <div class="presentation-title">親指シフトの話。</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">327.</div>
+                    <div class="presentation-title">Concept and Practice of Public Policy After the Life Finished人生終了後の公共政策の概念とその展開</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">328.</div>
+                    <div class="presentation-title">「理系の子」</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">329.</div>
+                    <div class="presentation-title">この夏休みは北京と台湾に旅行しました</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">330.</div>
+                    <div class="presentation-title">ソーシャルネットワーク分析　人間関係可視化のメリット・デメリット</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">331.</div>
+                    <div class="presentation-title">Simple Geometric Depictions of Correlations: What are Multiple and Partial Correlations after all?重相関と偏相関の幾何的な解釈論</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">332.</div>
+                    <div class="presentation-title">英単語の接尾辞付加の際の長音化・短音化について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">333.</div>
+                    <div class="presentation-title">蓄音機について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">334.</div>
+                    <div class="presentation-title">人工衛星画像によるGDPの最確値の推計</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">335.</div>
+                    <div class="presentation-title">B型肝炎</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">336.</div>
+                    <div class="presentation-title">はじめての海外旅行（ロンドンでロックフェス編）</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">337.</div>
+                    <div class="presentation-title">北海道 in 夏休み</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">338.</div>
+                    <div class="presentation-title">人類ボット化計画</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">339.</div>
+                    <div class="presentation-title">ｺﾎﾟｫ、しませんか？</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">340.</div>
+                    <div class="presentation-title">扇風機のこれまでとこれから　〜DCモーターの普及による業界勢力図の変遷についての若干の考察〜</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">341.</div>
+                    <div class="presentation-title">TimeMachineの存在可能性</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">342.</div>
+                    <div class="presentation-title">続きが一通りしかないマンガ</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">343.</div>
+                    <div class="presentation-title">メンヘラーとかセックスとか童貞とかの考察みたいな最近考えてたこと</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">344.</div>
+                    <div class="presentation-title">Web システムにおける自動分類器を用いた機械学習と顧客の購買行動の予測</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">345.</div>
+                    <div class="presentation-title">一般人による減量における持続可能な食生活及び運動</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">346.</div>
+                    <div class="presentation-title">「コマジャン」について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">347.</div>
+                    <div class="presentation-title">やけサマ・カブチネで見る中規模 Wi-Fi システム構築のチューニングと実践</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">348.</div>
+                    <div class="presentation-title">世界における2つの概念 主にHIRATAとTAJIMAの概念を中心に</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">349.</div>
+                    <div class="presentation-title">平和のつくりかた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">350.</div>
+                    <div class="presentation-title">剤について</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">351.</div>
+                    <div class="presentation-title">不思議に思うこと</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">352.</div>
+                    <div class="presentation-title">労働基準法について　-各種手当の概要と請求に至るまで-</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">353.</div>
+                    <div class="presentation-title">献血に行ってきた</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">354.</div>
+                    <div class="presentation-title">日本酒の酒蔵マップとその考察（仮）</div>
+                </div>
+                <div class="presentation">
+                    <div class="presentation-number">355.</div>
+                    <div class="presentation-title">開発したソフトウェアの解説 http://clock-up.jp/</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create lightweight particle background (desktop only)
+            createLightweightParticles();
+            
+            // Add sparkle effects on hover
+            addSparkleEffects();
+            
+            // Enhanced search functionality
+            setupEnhancedSearch();
+            
+            // Add optimized scroll reveal
+            addOptimizedScrollReveal();
+            
+            // Add fun interactions
+            addFunInteractions();
+        });
+
+        // Enhanced search functionality with highlighting
+        function setupEnhancedSearch() {
+            const searchBox = document.getElementById('searchBox');
+            const presentationsList = document.getElementById('presentationsList');
+            const presentations = presentationsList.querySelectorAll('.presentation');
+            
+            // Add search animation
+            searchBox.addEventListener('focus', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.boxShadow = '0 0 30px rgba(255, 230, 109, 0.8)';
+            });
+            
+            searchBox.addEventListener('blur', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = '0 0 20px rgba(255, 230, 109, 0.5)';
+            });
+
+            searchBox.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                let visibleCount = 0;
+
+                presentations.forEach((presentation, index) => {
+                    const titleElement = presentation.querySelector('.presentation-title');
+                    
+                    // Cache original title for better performance
+                    if (!titleElement.dataset.originalTitle) {
+                        titleElement.dataset.originalTitle = titleElement.textContent;
+                    }
+                    const originalTitle = titleElement.dataset.originalTitle;
+                    const title = originalTitle.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || searchTerm === '') {
+                        presentation.style.display = 'flex';
+                        
+                        // Only highlight if search term is meaningful
+                        if (searchTerm.length > 1) {
+                            const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                            const highlightedTitle = originalTitle.replace(
+                                new RegExp(escapedTerm, 'gi'),
+                                match => `<span class=\"highlight\">${match}</span>`
+                            );
+                            titleElement.innerHTML = highlightedTitle;
+                        } else {
+                            titleElement.textContent = originalTitle;
+                        }
+                        
+                        visibleCount++;
+                    } else {
+                        presentation.style.display = 'none';
+                        titleElement.textContent = originalTitle;
+                    }
+                });
+
+                // Update count display
+                updateResultsCount(visibleCount, searchTerm);
+
+                // Show "no results" message if no matches
+                const existingNoResults = document.querySelector('.no-results');
+                if (visibleCount === 0 && searchTerm.length > 0) {
+                    if (!existingNoResults) {
+                        const noResults = document.createElement('div');
+                        noResults.className = 'no-results';
+                        noResults.textContent = '🔍 検索結果が見つかりませんでした';
+                        presentationsList.appendChild(noResults);
+                    }
+                } else {
+                    if (existingNoResults) {
+                        existingNoResults.remove();
+                    }
+                }
+            });
+        }
+        
+        function updateResultsCount(count, searchTerm) {
+            const countElement = document.querySelector('.presentation-count');
+            if (searchTerm.length > 0) {
+                countElement.innerHTML = `🎯 検索結果: ${count}件の発表テーマ 🎯`;
+            } else {
+                countElement.innerHTML = `🎆 全355件の発表テーマ 🎆`;
+            }
+        }
+
+        // Lightweight particle effect - desktop only
+        function createLightweightParticles() {
+            // Skip particles on mobile for better performance
+            if (window.innerWidth < 768) return;
+            
+            const particleContainer = document.createElement('div');
+            particleContainer.className = 'particle-container';
+            particleContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: -1;
+                overflow: hidden;
+            `;
+            
+            document.body.appendChild(particleContainer);
+            
+            // Reduce particle count for better performance
+            for (let i = 0; i < 6; i++) {
+                createOptimizedParticle(particleContainer, i);
+            }
+        }
+
+        function createOptimizedParticle(container, index) {
+            const particle = document.createElement('div');
+            const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D'];
+            const color = colors[index % colors.length];
+            
+            particle.style.cssText = `
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: ${color};
+                border-radius: 50%;
+                opacity: 0.3;
+                animation: floatParticle 20s linear infinite;
+                left: ${(index * 16)}%;
+                top: 100%;
+                animation-delay: ${index * 3}s;
+            `;
+            
+            container.appendChild(particle);
+        }
+
+        // Add sparkle effects
+        function addSparkleEffects() {
+            const sparkleElements = document.querySelectorAll('.section h1, .back-link, .search-box');
+            
+            sparkleElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    createSparkles(element);
+                });
+            });
+        }
+
+        function createSparkles(element) {
+            const rect = element.getBoundingClientRect();
+            const sparkleCount = 3; // Reduced for better performance
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                const size = Math.random() * 4 + 3;
+                const colors = ['#FFE66D', '#FF6B9D', '#4ECDC4', '#A463FF'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                sparkle.style.cssText = `
+                    position: fixed;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${color};
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1000;
+                    left: ${rect.left + Math.random() * rect.width}px;
+                    top: ${rect.top + Math.random() * rect.height}px;
+                    animation: sparkleAnim 0.8s ease-out forwards;
+                    box-shadow: 0 0 10px ${color};
+                `;
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 800);
+            }
+        }
+
+        // Optimized scroll reveal - batch process only visible items
+        function addOptimizedScrollReveal() {
+            const presentations = Array.from(document.querySelectorAll('.presentation'));
+            let isAnimating = false;
+            
+            // Initialize presentations as hidden
+            presentations.forEach(presentation => {
+                presentation.style.opacity = '0';
+                presentation.style.transform = 'translateY(20px)';
+                presentation.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+            });
+            
+            const animateVisibleItems = () => {
+                if (isAnimating) return;
+                isAnimating = true;
+                
+                requestAnimationFrame(() => {
+                    const scrollTop = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    
+                    presentations.forEach(presentation => {
+                        if (presentation.classList.contains('visible')) return;
+                        if (presentation.style.display === 'none') return;
+                        
+                        const rect = presentation.getBoundingClientRect();
+                        if (rect.top < windowHeight - 50) {
+                            presentation.classList.add('visible');
+                        }
+                    });
+                    
+                    isAnimating = false;
+                });
+            };
+            
+            // Initial reveal
+            setTimeout(animateVisibleItems, 50);
+            
+            // Throttled scroll listener
+            let scrollTimer;
+            window.addEventListener('scroll', () => {
+                if (scrollTimer) clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(animateVisibleItems, 30);
+            }, { passive: true });
+        }
+
+        // Lightweight interactions using CSS hover for better performance
+        function addFunInteractions() {
+            // CSS-only hover effects are much faster than JavaScript listeners
+            // The hover effects are already defined in CSS
+        }
+
+        // Add required CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            .visible {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+            
+            @keyframes floatParticle {
+                from {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 0.4;
+                }
+                50% {
+                    opacity: 0.8;
+                }
+                to {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes sparkleAnim {
+                0% {
+                    transform: scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1) rotate(180deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(0) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
